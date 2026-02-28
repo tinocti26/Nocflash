@@ -534,6 +534,87 @@
             }
         }
 
+        /* ===== ESTILOS ESPECÍFICOS PARA HUB SOFT ===== */
+        .hubsoft-container {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .busca-rapida {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .busca-rapida input {
+            flex: 1;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            font-size: 16px;
+        }
+
+        .busca-rapida input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0,168,232,0.2);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .hubsoft-panel {
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .hubsoft-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .hubsoft-tab {
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .hubsoft-tab:hover {
+            background: var(--bg-secondary);
+        }
+
+        .hubsoft-tab.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .hubsoft-content {
+            display: none;
+        }
+
+        .hubsoft-content.show {
+            display: block;
+        }
+
         /* ===== RESPONSIVIDADE ===== */
         @media (max-width: 768px) {
             .layout {
@@ -547,6 +628,10 @@
             }
 
             .grid-container {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-3 {
                 grid-template-columns: 1fr;
             }
 
@@ -649,507 +734,191 @@
 
         <!-- CONTEÚDO PRINCIPAL -->
         <div class="conteudo">
-            <!-- PAINEL HUB -->
+            <!-- PAINEL HUB - INTEGRAÇÃO COMPLETA -->
             <div class="painel show" id="hub">
-                <h1 class="titulo-painel"><i>📊</i> Painel HubSoft</h1>
-                <div class="grid-container">
-                    <div class="card">
-                        <div class="card-header">
-                            <i>📍</i>
-                            <h2>Principais</h2>
-                        </div>
-                        <button class="btn-ferramenta" onclick="abrir('https://tcftelecom.hubsoft.com.br/dashboard')">
-                            <i>📈</i> Dashboard
-                        </button>
-                        <button class="btn-ferramenta" onclick="abrir('https://tcftelecom.hubsoft.com.br/atendimento_os/agenda_tecnico')">
-                            <i>👨‍🔧</i> Agenda Técnico
-                        </button>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <i>🗺️</i>
-                            <h2>Mapas</h2>
-                        </div>
-                        <button class="btn-ferramenta" onclick="abrir('https://tcftelecom.hubsoft.com.br/atendimento_os/ordem_servico/mapa')">
-                            <i>📍</i> Mapa de OS
-                        </button>
-                        <button class="btn-ferramenta" onclick="abrir('https://tcftelecom.hubsoft.com.br/mapeamento/cliente')">
-                            <i>🗺️</i> Mapa de Cliente
-                        </button>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <i>🌐</i>
-                            <h2>Rede</h2>
-                        </div>
-                        <button class="btn-ferramenta" onclick="abrir('https://tcftelecom.hubsoft.com.br/rede/rede/cpe')">
-                            <i>🖧</i> CPES e ONU
-                        </button>
-                        <button class="btn-ferramenta" onclick="abrir('https://tcftelecom.hubsoft.com.br/rede/rede/equipamento_conexao')">
-                            <i>🔌</i> OLTS HUB
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PAINEL DOCUMENTAÇÃO -->
-            <div class="painel" id="doc">
-                <h1 class="titulo-painel"><i>📃</i> Documentação TCF</h1>
-                <div class="grid-container">
-                    <div class="card">
-                        <div class="card-header">
-                            <i>📚</i>
-                            <h2>Documentação Técnica</h2>
-                        </div>
-                        <button class="btn-ferramenta" onclick="abrir('https://treinamentos-tcf.pages.dev')">
-                            <i>📖</i> Base de Conhecimento
-                        </button>
-                    </div>
-                </div>    
-            </div>
-
-            <!-- PAINEL SENHAS -->
-            <div class="painel" id="senhas">
-                <h1 class="titulo-painel"><i>🔑</i> Credenciais dos Equipamentos</h1>
+                <h1 class="titulo-painel"><i>📊</i> HubSoft Integrado</h1>
                 
-                <div class="grid-container">
-                    <div class="card">
-                        <div class="card-header">
-                            <i>🔷</i>
-                            <h2>HUAWEI</h2>
-                        </div>
-                        <div class="card senha-btn" onclick="toggleSenha('huawei')">
-                            <span>Ver Credenciais</span>
-                        </div>
-                        <div class="credencial" id="huawei">
-                            <strong>👤 Usuário:</strong> Epadmin / telecomadmin<br>
-                            <strong>🔑 Senha:</strong> 2amt0j1t8 / Tcf@Hw2@23!
+                <!-- BUSCA RÁPIDA INTELIGENTE -->
+                <div class="hubsoft-container">
+                    <h2 style="color: var(--primary); margin-bottom: 15px;">🔍 Busca Inteligente</h2>
+                    <div class="busca-rapida">
+                        <input type="text" id="buscaHub" placeholder="Digite nome, CPF, protocolo, endereço ou telefone..." onkeypress="if(event.key === 'Enter') buscarHubSoft()">
+                        <button onclick="buscarHubSoft()" class="btn-ferramenta" style="width: auto; padding: 12px 25px;">
+                            <i>🔎</i> Buscar
+                        </button>
+                        <button onclick="limparBusca()" class="btn-ferramenta" style="width: auto; padding: 12px 25px; background: var(--bg-secondary);">
+                            <i>🗑️</i>
+                        </button>
+                    </div>
+                    
+                    <!-- SUGESTÕES RÁPIDAS -->
+                    <div class="d-flex gap-2" style="flex-wrap: wrap;">
+                        <span class="badge badge-success" style="cursor: pointer;" onclick="document.getElementById('buscaHub').value = '12345678900'; buscarHubSoft()">📄 CPF</span>
+                        <span class="badge badge-success" style="cursor: pointer;" onclick="document.getElementById('buscaHub').value = 'OS-2024'; buscarHubSoft()">📋 Protocolo</span>
+                        <span class="badge badge-success" style="cursor: pointer;" onclick="document.getElementById('buscaHub').value = 'João'; buscarHubSoft()">👤 Nome</span>
+                        <span class="badge badge-success" style="cursor: pointer;" onclick="document.getElementById('buscaHub').value = '34991234567'; buscarHubSoft()">📱 Telefone</span>
+                    </div>
+                </div>
+
+                <!-- TABS DE NAVEGAÇÃO HUB SOFT -->
+                <div class="hubsoft-container">
+                    <div class="hubsoft-tabs">
+                        <div class="hubsoft-tab active" onclick="mudarAbaHub('principais')">📍 Principais</div>
+                        <div class="hubsoft-tab" onclick="mudarAbaHub('chamados')">📋 Chamados</div>
+                        <div class="hubsoft-tab" onclick="mudarAbaHub('clientes')">👥 Clientes</div>
+                        <div class="hubsoft-tab" onclick="mudarAbaHub('rede')">🌐 Rede</div>
+                        <div class="hubsoft-tab" onclick="mudarAbaHub('financeiro')">💰 Financeiro</div>
+                    </div>
+
+                    <!-- ABA PRINCIPAIS -->
+                    <div class="hubsoft-content show" id="aba-principais">
+                        <div class="grid-3">
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('dashboard')">
+                                <i>📈</i> Dashboard
+                            </button>
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('agenda')">
+                                <i>📅</i> Agenda Técnicos
+                            </button>
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('novo_chamado')">
+                                <i>➕</i> Novo Chamado
+                            </button>
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('chamados_abertos')">
+                                <i>📋</i> Chamados Abertos
+                            </button>
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('mapa_os')">
+                                <i>🗺️</i> Mapa de OS
+                            </button>
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('mapa_cliente')">
+                                <i>📍</i> Mapa Clientes
+                            </button>
                         </div>
                     </div>
 
-                    <div class="card">
-                        <div class="card-header">
-                            <i>🔶</i>
-                            <h2>TP-LINK</h2>
+                    <!-- ABA CHAMADOS -->
+                    <div class="hubsoft-content" id="aba-chamados">
+                        <div class="grid-3">
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('chamados_hoje')">
+                                <i>📆</i> Chamados Hoje
+                            </button>
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('chamados_andamento')">
+                                <i>🔄</i> Em Andamento
+                            </button>
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('chamados_fechados')">
+                                <i>✅</i> Fechados Hoje
+                            </button>
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('meus_chamados')">
+                                <i>👤</i> Meus Chamados
+                            </button>
+                            <button class="btn-ferramenta" onclick="abrirChamadoRapido()">
+                                <i>⚡</i> Chamado Rápido
+                            </button>
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('relatorios_os')">
+                                <i>📊</i> Relatórios
+                            </button>
                         </div>
-                        <div class="card senha-btn" onclick="toggleSenha('tplink')">
-                            <span>Ver Credenciais</span>
-                        </div>
-                        <div class="credencial" id="tplink">
-                            <strong>🌐 IP / superadmin</strong><br>
-                            <strong>🔑 Senha:</strong> tcfadmin001 / 2amt0j1t8
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-header">
-                            <i>🔷</i>
-                            <h2>DATACOM</h2>
-                        </div>
-                        <div class="card senha-btn" onclick="toggleSenha('datacom')">
-                            <span>Ver Credenciais</span>
-                        </div>
-                        <div class="credencial" id="datacom">
-                            <strong>👤 Usuário:</strong> admin / user<br>
-                            <strong>🔑 Senha:</strong> 2amt0j1t8 / #TcFcnM@2019*98 / TcFcnM@2019*98
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-header">
-                            <i>🔶</i>
-                            <h2>ARCHER C20</h2>
-                        </div>
-                        <div class="card senha-btn" onclick="toggleSenha('archer2')">
-                            <span>Ver Credenciais</span>
-                        </div>
-                        <div class="credencial" id="archer2">
-                            <strong>🔑 Senha:</strong> #TcFcnM@2019* / admin / 2amt0j1t8
+                        
+                        <!-- BUSCA DE PROTOCOLO -->
+                        <div class="hubsoft-panel">
+                            <h3 style="margin-bottom: 10px;">Buscar Protocolo</h3>
+                            <div class="d-flex gap-2">
+                                <input type="text" id="protocoloBusca" placeholder="Nº do protocolo..." style="flex:1; padding:10px; border-radius:6px; border:1px solid var(--border-color); background:var(--bg-tertiary); color:var(--text-primary);">
+                                <button onclick="buscarProtocolo()" class="btn-ferramenta" style="width: auto;">Buscar</button>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="card">
-                        <div class="card-header">
-                            <i>🔷</i>
-                            <h2>V-SOL</h2>
-                        </div>
-                        <div class="card senha-btn" onclick="toggleSenha('sol')">
-                            <span>Ver Credenciais</span>
-                        </div>
-                        <div class="credencial" id="sol">
-                            <strong>👤 Usuário:</strong> admin<br>
-                            <strong>🔑 Senha:</strong> 2amt0j1t8 / stdONU101
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-header">
-                            <i>🔶</i>
-                            <h2>ARCHER C5</h2>
-                        </div>
-                        <div class="card senha-btn" onclick="toggleSenha('archer')">
-                            <span>Ver Credenciais</span>
-                        </div>
-                        <div class="credencial" id="archer">
-                            <strong>🔑 Senha:</strong> 2amt0j1t8
+                    <!-- ABA CLIENTES -->
+                    <div class="hubsoft-content" id="aba-clientes">
+                        <div class="grid-3">
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('cadastro_cliente')">
+                                <i>➕</i> Novo Cliente
+                            </button>
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('lista_clientes')">
+                                <i>📋</i> Lista Clientes
+                            </button>
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('clientes_inadimplentes')">
+                                <i>⚠️</i> Inadimplentes
+                            </button>
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('clientes_bloqueados')">
+                                <i>🔒</i> Bloqueados
+                            </button>
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('aniversariantes')">
+                                <i>🎂</i> Aniversariantes
+                            </button>
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('contratos')">
+                                <i>📄</i> Contratos
+                            </button>
                         </div>
                     </div>
 
-                    <div class="card">
-                        <div class="card-header">
-                            <i>🔷</i>
-                            <h2>STAVIX</h2>
-                        </div>
-                        <div class="card senha-btn" onclick="toggleSenha('stavix')">
-                            <span>Ver Credenciais</span>
-                        </div>
-                        <div class="credencial" id="stavix">
-                            <strong>👤 Usuário:</strong> admin / root<br>
-                            <strong>🔑 Senha:</strong> 2amt0j1t8 / admin / Changeme_123 / unee123
+                    <!-- ABA REDE -->
+                    <div class="hubsoft-content" id="aba-rede">
+                        <div class="grid-3">
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('cpes_onu')">
+                                <i>🖧</i> CPEs/ONUs
+                            </button>
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('olts')">
+                                <i>🔌</i> OLTs
+                            </button>
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('equipamentos')">
+                                <i>📡</i> Equipamentos
+                            </button>
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('mapa_rede')">
+                                <i>🗺️</i> Mapa da Rede
+                            </button>
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('monitoramento_rede')">
+                                <i>📊</i> Monitoramento
+                            </button>
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('log_equipamentos')">
+                                <i>📝</i> Logs
+                            </button>
                         </div>
                     </div>
 
-                    <div class="card">
-                        <div class="card-header">
-                            <i>🔶</i>
-                            <h2>MULTILASER</h2>
-                        </div>
-                        <div class="card senha-btn" onclick="toggleSenha('multilaser')">
-                            <span>Ver Credenciais</span>
-                        </div>
-                        <div class="credencial" id="multilaser">
-                            <strong>👤 Usuário:</strong> adminisp<br>
-                            <strong>🔑 Senha:</strong> adminisp
+                    <!-- ABA FINANCEIRO -->
+                    <div class="hubsoft-content" id="aba-financeiro">
+                        <div class="grid-3">
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('faturamento')">
+                                <i>💰</i> Faturamento
+                            </button>
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('boletos')">
+                                <i>📄</i> Boletos
+                            </button>
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('recebimentos')">
+                                <i>💵</i> Recebimentos
+                            </button>
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('contas_receber')">
+                                <i>📈</i> Contas a Receber
+                            </button>
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('extratos')">
+                                <i>📊</i> Extratos
+                            </button>
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('notas_fiscais')">
+                                <i>🧾</i> Notas Fiscais
+                            </button>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- PAINEL MONITORAMENTO -->
-            <div class="painel" id="monitor">
-                <h1 class="titulo-painel"><i>📡</i> Monitoramento de Rede</h1>
-                <div class="grid-container">
-                    <div class="card">
-                        <div class="card-header">
-                            <i>🟢</i>
-                            <h2>GPON</h2>
-                        </div>
-                        <button class="btn-ferramenta" onclick="abrir('https://grafana.tcftelecom.com.br/d/b_-hdzAnkdawdwa/6-gpon-causa-de-desconexao-das-onus?orgId=1&refresh=1m')">
-                            <i>📊</i> Causa de Desconexão
-                        </button>
-                        <button class="btn-ferramenta" onclick="abrir('https://grafana.tcftelecom.com.br/d/ETSzqH9iWdawd/6-gpon-contagem-de-onus-por-pon?orgId=1&refresh=5m')">
-                            <i>📈</i> Contagem de ONUs por PON
-                        </button>
-                        <button class="btn-ferramenta" onclick="abrir('https://grafana.tcftelecom.com.br/d/pR2b9Zsiaqa/6-gpon-potencia-das-onus?orgId=1&refresh=15m')">
-                            <i>⚡</i> Potência das ONUs
-                        </button>
-                        <button class="btn-ferramenta" onclick="abrir('https://grafana.tcftelecom.com.br/d/IMw6L74Dz/6-gpon-sinal-alto?orgId=1&refresh=15m')">
-                            <i>📶</i> Sinal Alto
-                        </button>
+                <!-- VISUALIZAÇÃO INTEGRADA -->
+                <div class="hubsoft-container">
+                    <h2 style="color: var(--primary); margin-bottom: 15px;">📺 Visualização Integrada</h2>
+                    <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
+                        <button onclick="carregarIframe('dashboard')" class="btn-ferramenta" style="width: auto;">📊 Dashboard</button>
+                        <button onclick="carregarIframe('chamados')" class="btn-ferramenta" style="width: auto;">📋 Chamados</button>
+                        <button onclick="carregarIframe('clientes')" class="btn-ferramenta" style="width: auto;">👥 Clientes</button>
+                        <button onclick="carregarIframe('mapa')" class="btn-ferramenta" style="width: auto;">🗺️ Mapa</button>
                     </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <i>🔋</i>
-                            <h2>VMS & Energia</h2>
-                        </div>
-                        <button class="btn-ferramenta" onclick="abrir('https://grafana.tcftelecom.com.br/d/oKasylFHz/8-energia-ping-e-energia?orgId=1&refresh=1m')">
-                            <i>⚡</i> PING & ENERGIA
-                        </button>
-                        <button class="btn-ferramenta" onclick="abrir('https://grafana.tcftelecom.com.br/d/l88Zhfjnzefwefw/11-servidores-vmware-esxi?orgId=1')">
-                            <i>🖥️</i> VMS Monitor
-                        </button>
+                    
+                    <div id="iframeContainer" style="background: var(--bg-tertiary); border-radius: 8px; padding: 20px; text-align: center; min-height: 400px;">
+                        <p style="color: var(--text-secondary);">Clique em um botão acima para visualizar o HubSoft</p>
                     </div>
                 </div>
-                <div class="text-center mt-4">
-                    <button class="btn-ferramenta btn-primary" onclick="abrir('https://grafana.tcftelecom.com.br')">
-                        <i>📊</i> Acessar Grafana Completo
-                    </button>
-                </div>
-            </div>
 
-            <!-- PAINEL MENSAGENS -->
-            <div class="painel" id="mensagens">
-                <h1 class="titulo-painel"><i>💬</i> Mensagens Automáticas</h1>
-                
-                <div class="grid-container">
-                    <div class="card">
-                        <div class="card-header">
-                            <i>🗓️</i>
-                            <h2>Agendamento</h2>
-                        </div>
-                        <button class="btn-ferramenta" onclick="copiarMensagem('diaA')">
-                            <i>🌅</i> Bom dia
-                        </button>
-                        <button class="btn-ferramenta" onclick="copiarMensagem('tardeA')">
-                            <i>☀️</i> Boa tarde
-                        </button>   
-                        <button class="btn-ferramenta" onclick="copiarMensagem('noiteA')">
-                            <i>🌙</i> Boa noite
-                        </button>
+                <!-- HISTÓRICO DE BUSCAS -->
+                <div class="hubsoft-container">
+                    <div class="d-flex justify-between align-center">
+                        <h2 style="color: var(--primary);">📜 Histórico de Buscas</h2>
+                        <button onclick="limparHistorico()" class="btn-ferramenta" style="width: auto; padding: 5px 15px;">Limpar</button>
                     </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <i>🛠️</i>
-                            <h2>Suporte Técnico</h2>
-                        </div>
-                        <button class="btn-ferramenta" onclick="copiarMensagem('dia')">
-                            <i>🌅</i> Bom dia
-                        </button>
-                        <button class="btn-ferramenta" onclick="copiarMensagem('tarde')">
-                            <i>☀️</i> Boa tarde
-                        </button> 
-                        <button class="btn-ferramenta" onclick="copiarMensagem('noite')">
-                            <i>🌙</i> Boa noite
-                        </button>
-                        <button class="btn-ferramenta" onclick="copiarMensagem('rompimento')">
-                            <i>⚠️</i> Rompimento
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PAINEL CURSOS -->
-            <div class="painel" id="cursos">
-                <h1 class="titulo-painel"><i>📚</i> Treinamentos</h1>
-                <div class="grid-container">
-                    <div class="card">
-                        <div class="card-header">
-                            <i>🎓</i>
-                            <h2>MikroTik</h2>
-                        </div>
-                        <button class="btn-ferramenta" onclick="abrir('https://www.youtube.com/watch?v=NrZMQ0YkWKI&list=PL1HkL1MnPEeVMEVRqUqQIYTBEibXJDiYK')">
-                            <i>📘</i> Curso de Redes com MikroTik
-                        </button>
-                        <button class="btn-ferramenta" onclick="abrir('https://www.youtube.com/watch?v=KkcTAKrmmT4&list=PLruxV6Ot1BiQ_PbRYh4P5E7-RujzWeSJh')">
-                            <i>📗</i> Curso de Redes com MikroTik (2)
-                        </button>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <i>🎓</i>
-                            <h2>Fundamentos</h2>
-                        </div>
-                        <button class="btn-ferramenta" onclick="abrir('https://www.youtube.com/watch?v=QkMbqL8QD9w&list=PLHz_AreHm4dkd4lr9G0Up-W-YaHYdTDuP')">
-                            <i>📕</i> Entenda a Rede do Cliente
-                        </button>
-                        <button class="btn-ferramenta" onclick="abrir('https://www.youtube.com/watch?v=5pFJPVg5nbE&list=PL6BTdBqzl1oY9EQ4151rGNEbATMNgX8vK')">
-                            <i>📙</i> Redes com Packet Tracer
-                        </button>
-                    </div>
-                </div>
-                <div class="text-center mt-4">
-                    <button class="btn-ferramenta btn-primary" onclick="abrir('https://quiz-redes-tcf.pages.dev')">
-                        <i>🧪</i> Testar conhecimentos (Quiz)
-                    </button>
-                </div>
-            </div>
-
-            <!-- PAINEL TV -->
-            <div class="painel" id="tv">
-                <h1 class="titulo-painel"><i>📺</i> TV Corporativa</h1>  
-                <div class="grid-container">
-                    <div class="card">
-                        <div class="card-header">
-                            <i>💻</i>
-                            <h2>Acesso Web</h2>
-                        </div>
-                        <button class="btn-ferramenta" onclick="abrir('http://tv.tcftelecom.com.br')">
-                            <i>🌐</i> Acessar TV Web
-                        </button>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <i>📱</i>
-                            <h2>Aplicativo Mobile</h2>
-                        </div>
-                        <button class="btn-ferramenta" onclick="abrir('https://play.google.com/store/apps/details?id=com.tcftv.tv&pcampaignid=web_share')">
-                            <i>📲</i> Baixar na Play Store
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- NOVO PAINEL: FERRAMENTAS -->
-            <div class="painel" id="ferramentas">
-                <h1 class="titulo-painel"><i>🛠️</i> Ferramentas Úteis</h1>
-                <div class="grid-container">
-                    <div class="card">
-                        <div class="card-header">
-                            <i>🔧</i>
-                            <h2>Diagnóstico</h2>
-                        </div>
-                        <button class="btn-ferramenta" onclick="pingTest()">
-                            <i>📶</i> Teste de Ping
-                        </button>
-                        <button class="btn-ferramenta" onclick="traceroute()">
-                            <i>🔄</i> Traceroute
-                        </button>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <i>📋</i>
-                            <h2>Calculadoras</h2>
-                        </div>
-                        <button class="btn-ferramenta" onclick="abrir('https://www.calculator.net/ip-subnet-calculator.html')">
-                            <i>🧮</i> Calculadora de Sub-rede
-                        </button>
-                        <button class="btn-ferramenta" onclick="abrir('https://www.rapidtables.com/convert/number/binary-to-decimal.html')">
-                            <i>🔢</i> Conversor Binário/Decimal
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // ===== INICIALIZAÇÃO =====
-        document.addEventListener("DOMContentLoaded", () => {
-            const painel = window.location.hash.replace("#", "");
-            if (painel && document.getElementById(painel)) {
-                abrirPainel(painel);
-            }
-            
-            if (sessionStorage.getItem('usuarioNOC')) {
-                document.getElementById('login-overlay').style.display = 'none';
-                document.querySelector('#userInfo span').textContent = sessionStorage.getItem('usuarioNOC');
-            }
-        });
-
-        // ===== AUTENTICAÇÃO =====
-        function entrar() {
-            const nome = document.getElementById('nomeUsuario').value.trim();
-            if (!nome) {
-                mostrarToast('Por favor, digite seu nome!', 'error');
-                return;
-            }
-            sessionStorage.setItem('usuarioNOC', nome);
-            document.getElementById('login-overlay').style.display = 'none';
-            document.querySelector('#userInfo span').textContent = nome;
-            mostrarToast(`Bem-vindo, ${nome}!`, 'success');
-        }
-
-        function logout() {
-            sessionStorage.removeItem('usuarioNOC');
-            location.reload();
-        }
-
-        // ===== NAVEGAÇÃO =====
-        function abrir(url) {
-            window.open(url, '_blank');
-        }
-
-        function abrirPainel(id) {
-            document.querySelectorAll('.painel').forEach(p => p.classList.remove('show'));
-            document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('active'));
-            
-            const painelAtivo = document.getElementById(id);
-            if (painelAtivo) {
-                painelAtivo.classList.add('show');
-                window.location.hash = id;
-                
-                // Ativar item do menu
-                document.querySelectorAll('.menu-item').forEach(item => {
-                    if (item.textContent.includes(id === 'hub' ? 'HubSoft' : 
-                                                  id === 'doc' ? 'Documentação' :
-                                                  id === 'senhas' ? 'Credenciais' :
-                                                  id === 'monitor' ? 'Monitoramento' :
-                                                  id === 'mensagens' ? 'Mensagens' :
-                                                  id === 'cursos' ? 'Treinamentos' :
-                                                  id === 'tv' ? 'TV' : 'Ferramentas')) {
-                        item.classList.add('active');
-                    }
-                });
-            }
-        }
-
-        // ===== SENHAS =====
-        function toggleSenha(id) {
-            const elemento = document.getElementById(id);
-            const botoes = document.querySelectorAll('.senha-btn');
-            
-            botoes.forEach(btn => {
-                if (btn.nextElementSibling && btn.nextElementSibling.id === id) {
-                    btn.classList.toggle('active');
-                }
-            });
-            
-            if (elemento) {
-                elemento.classList.toggle('show');
-            }
-        }
-
-        // ===== MENSAGENS =====
-        function copiarMensagem(periodo) {
-            const nome = sessionStorage.getItem('usuarioNOC') || 'Suporte Técnico';
-            
-            const textos = {
-                dia: `🌅 Bom dia! Meu nome é ${nome}, sou do suporte técnico. Como posso ajudá-lo?`,
-                tarde: `☀️ Boa tarde! Meu nome é ${nome}, sou do suporte técnico. Em que posso auxiliar?`,
-                noite: `🌙 Boa noite! Meu nome é ${nome}, sou do suporte técnico. Estou à disposição para ajudá-lo.`,
-                rompimento: '⚠️ Olá! Identificamos um rompimento na rede em sua região. Já encaminhamos um técnico ao local e estamos trabalhando para normalizar o serviço o mais rápido possível. Agradecemos a compreensão.',
-                diaA: `🌅 Bom dia! Aqui é ${nome} do setor de agendamentos da TCF Telecom.`,
-                tardeA: `☀️ Boa tarde! Aqui é ${nome} do setor de agendamentos da TCF Telecom.`,
-                noiteA: `🌙 Boa noite! Aqui é ${nome} do setor de agendamentos da TCF Telecom.`
-            };
-            
-            const texto = textos[periodo] || textos.dia;
-            
-            navigator.clipboard.writeText(texto).then(() => {
-                mostrarToast('✅ Mensagem copiada para a área de transferência!', 'success');
-            }).catch(() => {
-                mostrarToast('❌ Erro ao copiar mensagem', 'error');
-            });
-        }
-
-        // ===== TOAST NOTIFICATION =====
-        function mostrarToast(mensagem, tipo = 'success') {
-            const toast = document.createElement('div');
-            toast.className = `toast ${tipo}`;
-            toast.innerHTML = `
-                <i>${tipo === 'success' ? '✅' : tipo === 'error' ? '❌' : '⚠️'}</i>
-                <span>${mensagem}</span>
-            `;
-            
-            document.body.appendChild(toast);
-            
-            setTimeout(() => {
-                toast.remove();
-            }, 3000);
-        }
-
-        // ===== NOVAS FUNCIONALIDADES =====
-        function pingTest() {
-            const ip = prompt('Digite o IP ou domínio para testar:');
-            if (ip) {
-                mostrarToast(`Iniciando ping para ${ip}...`, 'warning');
-                // Simulação de ping (em produção, isso seria feito via backend)
-                setTimeout(() => {
-                    mostrarToast(`Ping concluído! Verifique o console para resultados.`, 'success');
-                    console.log(`Resultado do ping para ${ip}:`);
-                    console.log('64 bytes: tempo=15ms TTL=54');
-                    console.log('64 bytes: tempo=14ms TTL=54');
-                    console.log('64 bytes: tempo=16ms TTL=54');
-                    console.log('Pacotes: enviados = 4, recebidos = 4, perdidos = 0 (0% de perda)');
-                }, 2000);
-            }
-        }
-
-        function traceroute() {
-            const ip = prompt('Digite o IP ou domínio para traceroute:');
-            if (ip) {
-                mostrarToast(`Executando traceroute para ${ip}...`, 'warning');
-                // Simulação de traceroute
-                setTimeout(() => {
-                    mostrarToast(`Traceroute concluído! Verifique o console.`, 'success');
-                    console.log(`Traceroute para ${ip}:`);
-                    console.log('1  192.168.1.1  2ms');
-                    console.log('2  10.0.0.1    5ms');
-                    console.log('3  172.16.0.1  12ms');
-                    console.log('4  8.8.8.8     20ms');
-                }, 2000);
-            }
-        }
-    </script>
-</body>
-</html>
+                    <div id="historicoBuscas" style="margin-top: 15px

@@ -4,677 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NOC TCF Telecom - Centro de Operações</title>
-    
-    <style>
-        /* ===== VARIÁVEIS E TEMA PROFISSIONAL ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #00a8e8;
-            --primary-dark: #0077b6;
-            --primary-light: #61c0ff;
-            --secondary: #2d3e50;
-            --success: #2ecc71;
-            --warning: #f39c12;
-            --danger: #e74c3c;
-            --dark: #1a2634;
-            --darker: #0f172a;
-            --light: #ecf0f1;
-            --gray: #95a5a6;
-            --whatsapp: #25d366;
-            
-            --bg-primary: #0f172a;
-            --bg-secondary: #1e293b;
-            --bg-tertiary: #334155;
-            --text-primary: #f8fafc;
-            --text-secondary: #cbd5e1;
-            --border-color: #2d3e50;
-            
-            --shadow-sm: 0 2px 4px rgba(0,0,0,0.3);
-            --shadow-md: 0 4px 6px rgba(0,0,0,0.4);
-            --shadow-lg: 0 10px 15px rgba(0,0,0,0.5);
-            --shadow-glow: 0 0 15px rgba(0,168,232,0.3);
-            
-            --transition: all 0.3s ease;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-        }
-
-        /* ===== SCROLLBAR PROFISSIONAL ===== */
-        ::-webkit-scrollbar {
-            width: 10px;
-            height: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-secondary);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary-light);
-        }
-
-        /* ===== LOGIN MODERNO ===== */
-        #login-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(8px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-        }
-
-        .login-box {
-            background: var(--bg-secondary);
-            border: 1px solid var(--primary);
-            padding: 40px;
-            border-radius: 16px;
-            width: 350px;
-            text-align: center;
-            box-shadow: var(--shadow-lg), var(--shadow-glow);
-            animation: slideIn 0.5s ease;
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateY(-30px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .login-box h2 {
-            margin-bottom: 25px;
-            color: var(--primary);
-            font-size: 24px;
-            font-weight: 500;
-        }
-
-        .login-box h2 i {
-            margin-right: 10px;
-        }
-
-        .login-box input {
-            width: 100%;
-            padding: 12px 15px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            background: var(--bg-tertiary);
-            color: var(--text-primary);
-            font-size: 16px;
-            transition: var(--transition);
-        }
-
-        .login-box input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(0,168,232,0.2);
-        }
-
-        .login-box input::placeholder {
-            color: var(--text-secondary);
-        }
-
-        .login-box button {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            width: 100%;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .login-box button:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-glow);
-            background: linear-gradient(135deg, var(--primary-light), var(--primary));
-        }
-
-        /* ===== LAYOUT PRINCIPAL ===== */
-        .layout {
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        /* ===== MENU LATERAL PROFISSIONAL ===== */
-        .menu {
-            width: 260px;
-            background: var(--darker);
-            border-right: 1px solid var(--border-color);
-            padding: 20px 0;
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto;
-            box-shadow: var(--shadow-md);
-        }
-
-        .menu-header {
-            padding: 0 20px 20px;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 20px;
-        }
-
-        .menu-header h2 {
-            color: var(--primary);
-            font-size: 18px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .menu-header h2 i {
-            font-size: 24px;
-        }
-
-        .menu-header .user-info {
-            margin-top: 15px;
-            padding: 10px;
-            background: var(--bg-secondary);
-            border-radius: 8px;
-            font-size: 14px;
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .menu-header .user-info i {
-            color: var(--primary);
-        }
-
-        .menu-item {
-            padding: 12px 20px;
-            margin: 4px 10px;
-            border-radius: 8px;
-            cursor: pointer;
-            color: var(--text-secondary);
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-weight: 500;
-        }
-
-        .menu-item i {
-            width: 24px;
-            color: var(--primary);
-            font-size: 18px;
-        }
-
-        .menu-item:hover {
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            transform: translateX(5px);
-        }
-
-        .menu-item.active {
-            background: var(--primary);
-            color: white;
-        }
-
-        .menu-item.active i {
-            color: white;
-        }
-
-        /* ===== CONTEÚDO PRINCIPAL ===== */
-        .conteudo {
-            flex: 1;
-            padding: 30px;
-            overflow-y: auto;
-            background: var(--bg-primary);
-        }
-
-        .painel {
-            display: none;
-            animation: fadeIn 0.4s ease;
-        }
-
-        .painel.show {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ===== TÍTULOS ===== */
-        .titulo-painel {
-            color: var(--primary);
-            font-size: 28px;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .titulo-painel i {
-            font-size: 32px;
-        }
-
-        .subtitulo {
-            color: var(--primary-light);
-            font-size: 20px;
-            margin: 25px 0 15px;
-            font-weight: 500;
-        }
-
-        /* ===== GRID E CARDS ===== */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 25px;
-        }
-
-        .card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 20px;
-            transition: var(--transition);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg), var(--shadow-glow);
-            border-color: var(--primary);
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .card-header i {
-            font-size: 24px;
-            color: var(--primary);
-        }
-
-        .card-header h2 {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--primary-light);
-        }
-
-        .card-header h3 {
-            font-size: 16px;
-            color: var(--text-secondary);
-        }
-
-        /* ===== BOTÕES ===== */
-        .btn-ferramenta {
-            width: 100%;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
-            padding: 12px 15px;
-            border-radius: 8px;
-            color: var(--text-primary);
-            cursor: pointer;
-            margin: 5px 0;
-            transition: var(--transition);
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .btn-ferramenta:hover {
-            background: var(--primary);
-            border-color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-glow);
-        }
-
-        .btn-ferramenta i {
-            width: 20px;
-            font-size: 16px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            border: none;
-            padding: 15px 30px;
-            font-size: 16px;
-            font-weight: 600;
-            width: auto;
-        }
-
-        .btn-primary:hover {
-            background: linear-gradient(135deg, var(--primary-light), var(--primary));
-        }
-
-        /* ===== CREDENCIAIS ===== */
-        .card.senha-btn {
-            cursor: pointer;
-            margin-bottom: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .card.senha-btn::after {
-            content: "▼";
-            font-size: 12px;
-            color: var(--primary);
-            transition: var(--transition);
-        }
-
-        .card.senha-btn.active::after {
-            transform: rotate(180deg);
-        }
-
-        .credencial {
-            background: var(--bg-tertiary);
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 5px;
-            margin-bottom: 15px;
-            font-family: 'Courier New', monospace;
-            line-height: 1.8;
-            border-left: 3px solid var(--primary);
-            display: none;
-            animation: slideDown 0.3s ease;
-        }
-
-        .credencial.show {
-            display: block;
-        }
-
-        .credencial strong {
-            color: var(--primary-light);
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ===== WHATSAPP FLOAT ===== */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 100;
-            background: var(--whatsapp);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-            animation: pulse 2s infinite;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-            text-decoration: none;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1) rotate(5deg);
-            background: #128C7E;
-        }
-
-        .whatsapp-float svg {
-            width: 32px;
-            height: 32px;
-            fill: white;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-
-        /* ===== BADGES E STATUS ===== */
-        .badge {
-            display: inline-block;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .badge-success {
-            background: var(--success);
-            color: white;
-        }
-
-        .badge-warning {
-            background: var(--warning);
-            color: white;
-        }
-
-        .badge-danger {
-            background: var(--danger);
-            color: white;
-        }
-
-        /* ===== TOAST NOTIFICATION ===== */
-        .toast {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            background: var(--bg-secondary);
-            border-left: 4px solid var(--success);
-            padding: 15px 25px;
-            border-radius: 8px;
-            box-shadow: var(--shadow-lg);
-            color: var(--text-primary);
-            z-index: 1000;
-            animation: slideInRight 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .toast.error {
-            border-left-color: var(--danger);
-        }
-
-        .toast.warning {
-            border-left-color: var(--warning);
-        }
-
-        @keyframes slideInRight {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        /* ===== ESTILOS ESPECÍFICOS PARA HUB SOFT ===== */
-        .hubsoft-container {
-            background: var(--bg-secondary);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .busca-rapida {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .busca-rapida input {
-            flex: 1;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            background: var(--bg-tertiary);
-            color: var(--text-primary);
-            font-size: 16px;
-        }
-
-        .busca-rapida input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(0,168,232,0.2);
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
-
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-        }
-
-        .hubsoft-panel {
-            background: var(--bg-tertiary);
-            border-radius: 8px;
-            padding: 15px;
-            margin-top: 20px;
-        }
-
-        .hubsoft-tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
-            flex-wrap: wrap;
-        }
-
-        .hubsoft-tab {
-            padding: 8px 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: var(--transition);
-            background: var(--bg-tertiary);
-        }
-
-        .hubsoft-tab:hover {
-            background: var(--bg-secondary);
-        }
-
-        .hubsoft-tab.active {
-            background: var(--primary);
-            color: white;
-        }
-
-        .hubsoft-content {
-            display: none;
-        }
-
-        .hubsoft-content.show {
-            display: block;
-        }
-
-        /* ===== RESPONSIVIDADE ===== */
-        @media (max-width: 768px) {
-            .layout {
-                flex-direction: column;
-            }
-
-            .menu {
-                width: 100%;
-                height: auto;
-                max-height: 200px;
-            }
-
-            .grid-container {
-                grid-template-columns: 1fr;
-            }
-
-            .grid-3 {
-                grid-template-columns: 1fr;
-            }
-
-            .whatsapp-float {
-                bottom: 20px;
-                right: 20px;
-                width: 50px;
-                height: 50px;
-            }
-
-            .whatsapp-float svg {
-                width: 24px;
-                height: 24px;
-            }
-
-            .conteudo {
-                padding: 20px;
-            }
-
-            .titulo-painel {
-                font-size: 22px;
-            }
-
-            .busca-rapida {
-                flex-direction: column;
-            }
-        }
-
-        /* ===== UTILITÁRIOS ===== */
-        .text-center { text-align: center; }
-        .mt-4 { margin-top: 20px; }
-        .mb-4 { margin-bottom: 20px; }
-        .w-100 { width: 100%; }
-        .d-flex { display: flex; }
-        .gap-2 { gap: 10px; }
-        .gap-4 { gap: 20px; }
-        .align-center { align-items: center; }
-        .justify-between { justify-content: space-between; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
     <!-- WHATSAPP FLOAT -->
     <a href="https://wa.me/5534991982529?text=Desejo falar com o suporte NOC." 
@@ -696,7 +27,7 @@
 
     <!-- LAYOUT PRINCIPAL -->
     <div class="layout">
-        <!-- MENU LATERAL MELHORADO -->
+        <!-- MENU LATERAL -->
         <div class="menu">
             <div class="menu-header">
                 <h2>
@@ -740,37 +71,37 @@
 
         <!-- CONTEÚDO PRINCIPAL -->
         <div class="conteudo">
-            <!-- PAINEL HUB - INTEGRAÇÃO COMPLETA -->
+            <!-- PAINEL HUB -->
             <div class="painel show" id="hub">
                 <h1 class="titulo-painel"><i>📊</i> HubSoft Integrado</h1>
                 
-                <!-- BUSCA RÁPIDA INTELIGENTE -->
+                <!-- BUSCA RÁPIDA -->
                 <div class="hubsoft-container">
-                    <h2 style="color: var(--primary); margin-bottom: 15px;">🔍 Busca Inteligente</h2>
+                    <h2 class="hubsoft-title">🔍 Busca Inteligente</h2>
                     <div class="busca-rapida">
                         <input type="text" id="buscaHub" placeholder="Digite nome, CPF, protocolo, endereço ou telefone..." onkeypress="if(event.key === 'Enter') buscarHubSoft()">
-                        <button onclick="buscarHubSoft()" class="btn-ferramenta" style="width: auto; padding: 12px 25px;">
+                        <button onclick="buscarHubSoft()" class="btn-ferramenta btn-buscar">
                             <i>🔎</i> Buscar
                         </button>
                     </div>
                     
                     <!-- SUGESTÕES RÁPIDAS -->
-                    <div class="d-flex gap-2" style="flex-wrap: wrap;">
-                        <span class="badge badge-success" style="cursor: pointer;" onclick="document.getElementById('buscaHub').value = '12345678900'; buscarHubSoft()">📄 CPF</span>
-                        <span class="badge badge-success" style="cursor: pointer;" onclick="document.getElementById('buscaHub').value = 'OS-2024'; buscarHubSoft()">📋 Protocolo</span>
-                        <span class="badge badge-success" style="cursor: pointer;" onclick="document.getElementById('buscaHub').value = 'João'; buscarHubSoft()">👤 Nome</span>
-                        <span class="badge badge-success" style="cursor: pointer;" onclick="document.getElementById('buscaHub').value = '34991234567'; buscarHubSoft()">📱 Telefone</span>
+                    <div class="sugestoes">
+                        <span class="badge sugestao-item" onclick="sugestaoBusca('cpf')">📄 CPF</span>
+                        <span class="badge sugestao-item" onclick="sugestaoBusca('protocolo')">📋 Protocolo</span>
+                        <span class="badge sugestao-item" onclick="sugestaoBusca('nome')">👤 Nome</span>
+                        <span class="badge sugestao-item" onclick="sugestaoBusca('telefone')">📱 Telefone</span>
                     </div>
                 </div>
 
-                <!-- TABS DE NAVEGAÇÃO HUB SOFT -->
+                <!-- TABS HUB -->
                 <div class="hubsoft-container">
                     <div class="hubsoft-tabs">
-                        <div class="hubsoft-tab active" onclick="mudarAbaHub('principais')">📍 Principais</div>
-                        <div class="hubsoft-tab" onclick="mudarAbaHub('chamados')">📋 Chamados</div>
-                        <div class="hubsoft-tab" onclick="mudarAbaHub('clientes')">👥 Clientes</div>
-                        <div class="hubsoft-tab" onclick="mudarAbaHub('rede')">🌐 Rede</div>
-                        <div class="hubsoft-tab" onclick="mudarAbaHub('financeiro')">💰 Financeiro</div>
+                        <div class="hubsoft-tab active" onclick="mudarAbaHub('principais', this)">📍 Principais</div>
+                        <div class="hubsoft-tab" onclick="mudarAbaHub('chamados', this)">📋 Chamados</div>
+                        <div class="hubsoft-tab" onclick="mudarAbaHub('clientes', this)">👥 Clientes</div>
+                        <div class="hubsoft-tab" onclick="mudarAbaHub('rede', this)">🌐 Rede</div>
+                        <div class="hubsoft-tab" onclick="mudarAbaHub('financeiro', this)">💰 Financeiro</div>
                     </div>
 
                     <!-- ABA PRINCIPAIS -->
@@ -815,18 +146,6 @@
                             <button class="btn-ferramenta" onclick="abrirChamadoRapido()">
                                 <i>⚡</i> Chamado Rápido
                             </button>
-                            <button class="btn-ferramenta" onclick="abrirHubSoft('relatorios_os')">
-                                <i>📊</i> Relatórios
-                            </button>
-                        </div>
-                        
-                        <!-- BUSCA DE PROTOCOLO -->
-                        <div class="hubsoft-panel">
-                            <h3 style="margin-bottom: 10px;">Buscar Protocolo</h3>
-                            <div class="d-flex gap-2">
-                                <input type="text" id="protocoloBusca" placeholder="Nº do protocolo..." style="flex:1; padding:10px; border-radius:6px; border:1px solid var(--border-color); background:var(--bg-tertiary); color:var(--text-primary);">
-                                <button onclick="buscarProtocolo()" class="btn-ferramenta" style="width: auto;">Buscar</button>
-                            </div>
                         </div>
                     </div>
 
@@ -844,12 +163,6 @@
                             </button>
                             <button class="btn-ferramenta" onclick="abrirHubSoft('clientes_bloqueados')">
                                 <i>🔒</i> Bloqueados
-                            </button>
-                            <button class="btn-ferramenta" onclick="abrirHubSoft('aniversariantes')">
-                                <i>🎂</i> Aniversariantes
-                            </button>
-                            <button class="btn-ferramenta" onclick="abrirHubSoft('contratos')">
-                                <i>📄</i> Contratos
                             </button>
                         </div>
                     </div>
@@ -869,12 +182,6 @@
                             <button class="btn-ferramenta" onclick="abrirHubSoft('mapa_rede')">
                                 <i>🗺️</i> Mapa da Rede
                             </button>
-                            <button class="btn-ferramenta" onclick="abrirHubSoft('monitoramento_rede')">
-                                <i>📊</i> Monitoramento
-                            </button>
-                            <button class="btn-ferramenta" onclick="abrirHubSoft('log_equipamentos')">
-                                <i>📝</i> Logs
-                            </button>
                         </div>
                     </div>
 
@@ -890,31 +197,7 @@
                             <button class="btn-ferramenta" onclick="abrirHubSoft('recebimentos')">
                                 <i>💵</i> Recebimentos
                             </button>
-                            <button class="btn-ferramenta" onclick="abrirHubSoft('contas_receber')">
-                                <i>📈</i> Contas a Receber
-                            </button>
-                            <button class="btn-ferramenta" onclick="abrirHubSoft('extratos')">
-                                <i>📊</i> Extratos
-                            </button>
-                            <button class="btn-ferramenta" onclick="abrirHubSoft('notas_fiscais')">
-                                <i>🧾</i> Notas Fiscais
-                            </button>
                         </div>
-                    </div>
-                </div>
-
-                <!-- VISUALIZAÇÃO INTEGRADA -->
-                <div class="hubsoft-container">
-                    <h2 style="color: var(--primary); margin-bottom: 15px;">📺 Visualização Integrada</h2>
-                    <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
-                        <button onclick="carregarIframe('dashboard')" class="btn-ferramenta" style="width: auto;">📊 Dashboard</button>
-                        <button onclick="carregarIframe('chamados')" class="btn-ferramenta" style="width: auto;">📋 Chamados</button>
-                        <button onclick="carregarIframe('clientes')" class="btn-ferramenta" style="width: auto;">👥 Clientes</button>
-                        <button onclick="carregarIframe('mapa')" class="btn-ferramenta" style="width: auto;">🗺️ Mapa</button>
-                    </div>
-                    
-                    <div id="iframeContainer" style="background: var(--bg-tertiary); border-radius: 8px; padding: 20px; text-align: center; min-height: 400px;">
-                        <p style="color: var(--text-secondary);">Clique em um botão acima para visualizar o HubSoft</p>
                     </div>
                 </div>
             </div>
@@ -963,7 +246,6 @@
                             <span>Ver Credenciais</span>
                         </div>
                         <div class="credencial" id="tplink">
-                            <strong>🌐 IP / superadmin</strong><br>
                             <strong>🔑 Senha:</strong> tcfadmin001 / 2amt0j1t8
                         </div>
                     </div>
@@ -978,26 +260,13 @@
                         </div>
                         <div class="credencial" id="datacom">
                             <strong>👤 Usuário:</strong> admin / user<br>
-                            <strong>🔑 Senha:</strong> 2amt0j1t8 / #TcFcnM@2019*98 / TcFcnM@2019*98
+                            <strong>🔑 Senha:</strong> 2amt0j1t8 / #TcFcnM@2019*98
                         </div>
                     </div>
 
                     <div class="card">
                         <div class="card-header">
                             <i>🔶</i>
-                            <h2>ARCHER C20</h2>
-                        </div>
-                        <div class="card senha-btn" onclick="toggleSenha('archer2')">
-                            <span>Ver Credenciais</span>
-                        </div>
-                        <div class="credencial" id="archer2">
-                            <strong>🔑 Senha:</strong> #TcFcnM@2019* / admin / 2amt0j1t8
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-header">
-                            <i>🔷</i>
                             <h2>V-SOL</h2>
                         </div>
                         <div class="card senha-btn" onclick="toggleSenha('sol')">
@@ -1006,47 +275,6 @@
                         <div class="credencial" id="sol">
                             <strong>👤 Usuário:</strong> admin<br>
                             <strong>🔑 Senha:</strong> 2amt0j1t8 / stdONU101
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-header">
-                            <i>🔶</i>
-                            <h2>ARCHER C5</h2>
-                        </div>
-                        <div class="card senha-btn" onclick="toggleSenha('archer')">
-                            <span>Ver Credenciais</span>
-                        </div>
-                        <div class="credencial" id="archer">
-                            <strong>🔑 Senha:</strong> 2amt0j1t8
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-header">
-                            <i>🔷</i>
-                            <h2>STAVIX</h2>
-                        </div>
-                        <div class="card senha-btn" onclick="toggleSenha('stavix')">
-                            <span>Ver Credenciais</span>
-                        </div>
-                        <div class="credencial" id="stavix">
-                            <strong>👤 Usuário:</strong> admin / root<br>
-                            <strong>🔑 Senha:</strong> 2amt0j1t8 / admin / Changeme_123 / unee123
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-header">
-                            <i>🔶</i>
-                            <h2>MULTILASER</h2>
-                        </div>
-                        <div class="card senha-btn" onclick="toggleSenha('multilaser')">
-                            <span>Ver Credenciais</span>
-                        </div>
-                        <div class="credencial" id="multilaser">
-                            <strong>👤 Usuário:</strong> adminisp<br>
-                            <strong>🔑 Senha:</strong> adminisp
                         </div>
                     </div>
                 </div>
@@ -1061,36 +289,10 @@
                             <i>🟢</i>
                             <h2>GPON</h2>
                         </div>
-                        <button class="btn-ferramenta" onclick="abrir('https://grafana.tcftelecom.com.br/d/b_-hdzAnkdawdwa/6-gpon-causa-de-desconexao-das-onus?orgId=1&refresh=1m')">
-                            <i>📊</i> Causa de Desconexão
-                        </button>
-                        <button class="btn-ferramenta" onclick="abrir('https://grafana.tcftelecom.com.br/d/ETSzqH9iWdawd/6-gpon-contagem-de-onus-por-pon?orgId=1&refresh=5m')">
-                            <i>📈</i> Contagem de ONUs por PON
-                        </button>
-                        <button class="btn-ferramenta" onclick="abrir('https://grafana.tcftelecom.com.br/d/pR2b9Zsiaqa/6-gpon-potencia-das-onus?orgId=1&refresh=15m')">
-                            <i>⚡</i> Potência das ONUs
-                        </button>
-                        <button class="btn-ferramenta" onclick="abrir('https://grafana.tcftelecom.com.br/d/IMw6L74Dz/6-gpon-sinal-alto?orgId=1&refresh=15m')">
-                            <i>📶</i> Sinal Alto
+                        <button class="btn-ferramenta" onclick="abrir('https://grafana.tcftelecom.com.br')">
+                            <i>📊</i> Acessar Grafana
                         </button>
                     </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <i>🔋</i>
-                            <h2>VMS & Energia</h2>
-                        </div>
-                        <button class="btn-ferramenta" onclick="abrir('https://grafana.tcftelecom.com.br/d/oKasylFHz/8-energia-ping-e-energia?orgId=1&refresh=1m')">
-                            <i>⚡</i> PING & ENERGIA
-                        </button>
-                        <button class="btn-ferramenta" onclick="abrir('https://grafana.tcftelecom.com.br/d/l88Zhfjnzefwefw/11-servidores-vmware-esxi?orgId=1')">
-                            <i>🖥️</i> VMS Monitor
-                        </button>
-                    </div>
-                </div>
-                <div class="text-center mt-4">
-                    <button class="btn-ferramenta btn-primary" onclick="abrir('https://grafana.tcftelecom.com.br')">
-                        <i>📊</i> Acessar Grafana Completo
-                    </button>
                 </div>
             </div>
 
@@ -1142,32 +344,12 @@
                     <div class="card">
                         <div class="card-header">
                             <i>🎓</i>
-                            <h2>MikroTik</h2>
+                            <h2>YouTube</h2>
                         </div>
-                        <button class="btn-ferramenta" onclick="abrir('https://www.youtube.com/watch?v=NrZMQ0YkWKI&list=PL1HkL1MnPEeVMEVRqUqQIYTBEibXJDiYK')">
-                            <i>📘</i> Curso de Redes com MikroTik
-                        </button>
-                        <button class="btn-ferramenta" onclick="abrir('https://www.youtube.com/watch?v=KkcTAKrmmT4&list=PLruxV6Ot1BiQ_PbRYh4P5E7-RujzWeSJh')">
-                            <i>📗</i> Curso de Redes com MikroTik (2)
+                        <button class="btn-ferramenta" onclick="abrir('https://youtube.com')">
+                            <i>📘</i> Cursos
                         </button>
                     </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <i>🎓</i>
-                            <h2>Fundamentos</h2>
-                        </div>
-                        <button class="btn-ferramenta" onclick="abrir('https://www.youtube.com/watch?v=QkMbqL8QD9w&list=PLHz_AreHm4dkd4lr9G0Up-W-YaHYdTDuP')">
-                            <i>📕</i> Entenda a Rede do Cliente
-                        </button>
-                        <button class="btn-ferramenta" onclick="abrir('https://www.youtube.com/watch?v=5pFJPVg5nbE&list=PL6BTdBqzl1oY9EQ4151rGNEbATMNgX8vK')">
-                            <i>📙</i> Redes com Packet Tracer
-                        </button>
-                    </div>
-                </div>
-                <div class="text-center mt-4">
-                    <button class="btn-ferramenta btn-primary" onclick="abrir('https://quiz-redes-tcf.pages.dev')">
-                        <i>🧪</i> Testar conhecimentos (Quiz)
-                    </button>
                 </div>
             </div>
 
@@ -1176,21 +358,8 @@
                 <h1 class="titulo-painel"><i>📺</i> TV Corporativa</h1>  
                 <div class="grid-container">
                     <div class="card">
-                        <div class="card-header">
-                            <i>💻</i>
-                            <h2>Acesso Web</h2>
-                        </div>
                         <button class="btn-ferramenta" onclick="abrir('http://tv.tcftelecom.com.br')">
                             <i>🌐</i> Acessar TV Web
-                        </button>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <i>📱</i>
-                            <h2>Aplicativo Mobile</h2>
-                        </div>
-                        <button class="btn-ferramenta" onclick="abrir('https://play.google.com/store/apps/details?id=com.tcftv.tv&pcampaignid=web_share')">
-                            <i>📲</i> Baixar na Play Store
                         </button>
                     </div>
                 </div>
@@ -1198,30 +367,11 @@
 
             <!-- PAINEL FERRAMENTAS -->
             <div class="painel" id="ferramentas">
-                <h1 class="titulo-painel"><i>🛠️</i> Ferramentas Úteis</h1>
+                <h1 class="titulo-painel"><i>🛠️</i> Ferramentas</h1>
                 <div class="grid-container">
                     <div class="card">
-                        <div class="card-header">
-                            <i>🔧</i>
-                            <h2>Diagnóstico</h2>
-                        </div>
-                        <button class="btn-ferramenta" onclick="pingTest()">
-                            <i>📶</i> Teste de Ping
-                        </button>
-                        <button class="btn-ferramenta" onclick="traceroute()">
-                            <i>🔄</i> Traceroute
-                        </button>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <i>📋</i>
-                            <h2>Calculadoras</h2>
-                        </div>
-                        <button class="btn-ferramenta" onclick="abrir('https://www.calculator.net/ip-subnet-calculator.html')">
-                            <i>🧮</i> Calculadora de Sub-rede
-                        </button>
-                        <button class="btn-ferramenta" onclick="abrir('https://www.rapidtables.com/convert/number/binary-to-decimal.html')">
-                            <i>🔢</i> Conversor Binário/Decimal
+                        <button class="btn-ferramenta" onclick="calculadoraIP()">
+                            <i>🧮</i> Calculadora IP
                         </button>
                     </div>
                 </div>
@@ -1229,315 +379,6 @@
         </div>
     </div>
 
-    <script>
-        // ===== VARIÁVEIS GLOBAIS =====
-        let historicoBuscas = JSON.parse(localStorage.getItem('historicoBuscas') || '[]');
-
-        // ===== INICIALIZAÇÃO =====
-        document.addEventListener("DOMContentLoaded", () => {
-            const painel = window.location.hash.replace("#", "");
-            if (painel && document.getElementById(painel)) {
-                abrirPainel(painel);
-            } else {
-                abrirPainel("hub");
-                window.location.hash = "hub";
-            }
-            
-            // Verifica se usuário já está logado
-            if (sessionStorage.getItem('usuarioNOC')) {
-                document.getElementById('login-overlay').style.display = 'none';
-                document.querySelector('#userInfo span').textContent = sessionStorage.getItem('usuarioNOC');
-            }
-            
-            // Carrega histórico de buscas
-            atualizarHistorico();
-        });
-
-        // ===== AUTENTICAÇÃO =====
-        function entrar() {
-            const nome = document.getElementById('nomeUsuario').value.trim();
-            if (!nome) {
-                mostrarToast('Por favor, digite seu nome!', 'error');
-                return;
-            }
-            sessionStorage.setItem('usuarioNOC', nome);
-            document.getElementById('login-overlay').style.display = 'none';
-            document.querySelector('#userInfo span').textContent = nome;
-            mostrarToast(`Bem-vindo, ${nome}!`, 'success');
-        }
-
-        function logout() {
-            sessionStorage.removeItem('usuarioNOC');
-            location.reload();
-        }
-
-        // ===== NAVEGAÇÃO =====
-        function abrir(url) {
-            window.open(url, '_blank');
-        }
-
-        function abrirPainel(id) {
-            document.querySelectorAll('.painel').forEach(p => p.classList.remove('show'));
-            document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('active'));
-            
-            const painelAtivo = document.getElementById(id);
-            if (painelAtivo) {
-                painelAtivo.classList.add('show');
-                window.location.hash = id;
-                
-                // Ativar item do menu
-                document.querySelectorAll('.menu-item').forEach(item => {
-                    const texto = item.textContent;
-                    if ((id === 'hub' && texto.includes('HubSoft')) ||
-                        (id === 'doc' && texto.includes('Documentação')) ||
-                        (id === 'senhas' && texto.includes('Credenciais')) ||
-                        (id === 'monitor' && texto.includes('Monitoramento')) ||
-                        (id === 'mensagens' && texto.includes('Mensagens')) ||
-                        (id === 'cursos' && texto.includes('Treinamentos')) ||
-                        (id === 'tv' && texto.includes('TV')) ||
-                        (id === 'ferramentas' && texto.includes('Ferramentas'))) {
-                        item.classList.add('active');
-                    }
-                });
-            }
-        }
-
-        // ===== FUNÇÕES HUB SOFT =====
-        function abrirHubSoft(tipo) {
-            const urls = {
-                // Principais
-                dashboard: 'https://tcftelecom.hubsoft.com.br/dashboard',
-                agenda: 'https://tcftelecom.hubsoft.com.br/atendimento_os/agenda_tecnico',
-                novo_chamado: 'https://tcftelecom.hubsoft.com.br/atendimento_os/ordem_servico/inserir',
-                chamados_abertos: 'https://tcftelecom.hubsoft.com.br/atendimento_os/ordem_servico',
-                mapa_os: 'https://tcftelecom.hubsoft.com.br/atendimento_os/ordem_servico/mapa',
-                mapa_cliente: 'https://tcftelecom.hubsoft.com.br/mapeamento/cliente',
-                
-                // Chamados
-                chamados_hoje: 'https://tcftelecom.hubsoft.com.br/atendimento_os/ordem_servico?data=' + new Date().toISOString().split('T')[0],
-                chamados_andamento: 'https://tcftelecom.hubsoft.com.br/atendimento_os/ordem_servico?status=andamento',
-                chamados_fechados: 'https://tcftelecom.hubsoft.com.br/atendimento_os/ordem_servico?status=fechado',
-                meus_chamados: 'https://tcftelecom.hubsoft.com.br/atendimento_os/ordem_servico?tecnico=' + sessionStorage.getItem('usuarioNOC'),
-                relatorios_os: 'https://tcftelecom.hubsoft.com.br/atendimento_os/relatorios',
-                
-                // Clientes
-                cadastro_cliente: 'https://tcftelecom.hubsoft.com.br/cadastro/cliente/inserir',
-                lista_clientes: 'https://tcftelecom.hubsoft.com.br/cadastro/cliente',
-                clientes_inadimplentes: 'https://tcftelecom.hubsoft.com.br/cadastro/cliente?inadimplente=1',
-                clientes_bloqueados: 'https://tcftelecom.hubsoft.com.br/cadastro/cliente?bloqueado=1',
-                aniversariantes: 'https://tcftelecom.hubsoft.com.br/cadastro/cliente?aniversariantes=1',
-                contratos: 'https://tcftelecom.hubsoft.com.br/cadastro/contrato',
-                
-                // Rede
-                cpes_onu: 'https://tcftelecom.hubsoft.com.br/rede/rede/cpe',
-                olts: 'https://tcftelecom.hubsoft.com.br/rede/rede/equipamento_conexao',
-                equipamentos: 'https://tcftelecom.hubsoft.com.br/rede/rede/equipamento',
-                mapa_rede: 'https://tcftelecom.hubsoft.com.br/mapeamento/rede',
-                monitoramento_rede: 'https://tcftelecom.hubsoft.com.br/rede/monitoramento',
-                log_equipamentos: 'https://tcftelecom.hubsoft.com.br/rede/log',
-                
-                // Financeiro
-                faturamento: 'https://tcftelecom.hubsoft.com.br/financeiro/faturamento',
-                boletos: 'https://tcftelecom.hubsoft.com.br/financeiro/boletos',
-                recebimentos: 'https://tcftelecom.hubsoft.com.br/financeiro/recebimentos',
-                contas_receber: 'https://tcftelecom.hubsoft.com.br/financeiro/contas_receber',
-                extratos: 'https://tcftelecom.hubsoft.com.br/financeiro/extratos',
-                notas_fiscais: 'https://tcftelecom.hubsoft.com.br/financeiro/notas_fiscais'
-            };
-            
-            if (urls[tipo]) {
-                window.open(urls[tipo], '_blank');
-                mostrarToast(`Abrindo ${tipo}...`, 'success');
-            }
-        }
-
-        function buscarHubSoft() {
-            const termo = document.getElementById('buscaHub').value.trim();
-            if (!termo) {
-                mostrarToast('Digite algo para buscar!', 'warning');
-                return;
-            }
-            
-            // Adicionar ao histórico
-            historicoBuscas.unshift({
-                termo: termo,
-                data: new Date().toLocaleString()
-            });
-            if (historicoBuscas.length > 10) historicoBuscas.pop();
-            localStorage.setItem('historicoBuscas', JSON.stringify(historicoBuscas));
-            atualizarHistorico();
-            
-            // Detectar tipo de busca
-            const somenteNumeros = termo.replace(/\D/g, '');
-            
-            if (somenteNumeros.length === 11) {
-                // CPF
-                window.open(`https://tcftelecom.hubsoft.com.br/cadastro/cliente?cpf=${termo}`, '_blank');
-            } else if (termo.match(/^OS-\d+/i) || termo.match(/^\d+$/)) {
-                // Protocolo
-                window.open(`https://tcftelecom.hubsoft.com.br/atendimento_os/ordem_servico/${termo}`, '_blank');
-            } else if (termo.match(/^\d{10,11}$/)) {
-                // Telefone
-                window.open(`https://tcftelecom.hubsoft.com.br/cadastro/cliente?telefone=${termo}`, '_blank');
-            } else {
-                // Nome
-                window.open(`https://tcftelecom.hubsoft.com.br/cadastro/cliente?busca=${encodeURIComponent(termo)}`, '_blank');
-            }
-            
-            mostrarToast(`Buscando: ${termo}`, 'success');
-        }
-
-        function buscarProtocolo() {
-            const protocolo = document.getElementById('protocoloBusca').value.trim();
-            if (!protocolo) {
-                mostrarToast('Digite o número do protocolo!', 'warning');
-                return;
-            }
-            window.open(`https://tcftelecom.hubsoft.com.br/atendimento_os/ordem_servico/${protocolo}`, '_blank');
-        }
-
-        function abrirChamadoRapido() {
-            const url = 'https://tcftelecom.hubsoft.com.br/atendimento_os/ordem_servico/inserir';
-            window.open(url, '_blank');
-            mostrarToast('Abrindo novo chamado...', 'success');
-        }
-
-        function mudarAbaHub(aba) {
-            // Remover active de todas as abas e conteúdos
-            document.querySelectorAll('.hubsoft-tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.hubsoft-content').forEach(c => c.classList.remove('show'));
-            
-            // Ativar aba clicada
-            event.target.classList.add('active');
-            
-            // Mostrar conteúdo correspondente
-            document.getElementById(`aba-${aba}`).classList.add('show');
-        }
-
-        function carregarIframe(tipo) {
-            const urls = {
-                dashboard: 'https://tcftelecom.hubsoft.com.br/dashboard',
-                chamados: 'https://tcftelecom.hubsoft.com.br/atendimento_os/ordem_servico',
-                clientes: 'https://tcftelecom.hubsoft.com.br/cadastro/cliente',
-                mapa: 'https://tcftelecom.hubsoft.com.br/mapeamento/cliente'
-            };
-            
-            const container = document.getElementById('iframeContainer');
-            container.innerHTML = `<iframe src="${urls[tipo]}" style="width:100%; height:500px; border:none; border-radius:8px;"></iframe>`;
-        }
-
-        function atualizarHistorico() {
-            const container = document.getElementById('historicoBuscas');
-            if (!container) return;
-            
-            if (historicoBuscas.length === 0) {
-                container.innerHTML = '<p style="color: var(--text-secondary);">Nenhuma busca recente</p>';
-                return;
-            }
-            
-            let html = '<div style="display: flex; flex-direction: column; gap: 10px;">';
-            historicoBuscas.forEach(item => {
-                html += `
-                    <div style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-tertiary); padding: 10px; border-radius: 6px;">
-                        <span>🔍 ${item.termo}</span>
-                        <small style="color: var(--text-secondary);">${item.data}</small>
-                    </div>
-                `;
-            });
-            html += '</div>';
-            container.innerHTML = html;
-        }
-
-        function limparHistorico() {
-            historicoBuscas = [];
-            localStorage.setItem('historicoBuscas', JSON.stringify(historicoBuscas));
-            atualizarHistorico();
-            mostrarToast('Histórico limpo!', 'success');
-        }
-
-        // ===== SENHAS =====
-        function toggleSenha(id) {
-            const elemento = document.getElementById(id);
-            const botoes = document.querySelectorAll('.senha-btn');
-            
-            botoes.forEach(btn => {
-                if (btn.nextElementSibling && btn.nextElementSibling.id === id) {
-                    btn.classList.toggle('active');
-                }
-            });
-            
-            if (elemento) {
-                elemento.classList.toggle('show');
-            }
-        }
-
-        // ===== MENSAGENS =====
-        function copiarMensagem(periodo) {
-            const nome = sessionStorage.getItem('usuarioNOC') || 'Suporte Técnico';
-            
-            const textos = {
-                dia: `🌅 Bom dia! Meu nome é ${nome}, sou do suporte técnico. Como posso ajudá-lo?`,
-                tarde: `☀️ Boa tarde! Meu nome é ${nome}, sou do suporte técnico. Em que posso auxiliar?`,
-                noite: `🌙 Boa noite! Meu nome é ${nome}, sou do suporte técnico. Estou à disposição para ajudá-lo.`,
-                rompimento: '⚠️ Olá! Identificamos um rompimento na rede em sua região. Já encaminhamos um técnico ao local e estamos trabalhando para normalizar o serviço o mais rápido possível. Agradecemos a compreensão.',
-                diaA: `🌅 Bom dia! Aqui é ${nome} do setor de agendamentos da TCF Telecom.`,
-                tardeA: `☀️ Boa tarde! Aqui é ${nome} do setor de agendamentos da TCF Telecom.`,
-                noiteA: `🌙 Boa noite! Aqui é ${nome} do setor de agendamentos da TCF Telecom.`
-            };
-            
-            const texto = textos[periodo] || textos.dia;
-            
-            navigator.clipboard.writeText(texto).then(() => {
-                mostrarToast('✅ Mensagem copiada!', 'success');
-            }).catch(() => {
-                mostrarToast('❌ Erro ao copiar', 'error');
-            });
-        }
-
-        // ===== FERRAMENTAS =====
-        function pingTest() {
-            const ip = prompt('Digite o IP ou domínio para testar:');
-            if (ip) {
-                mostrarToast(`Testando ping para ${ip}...`, 'warning');
-                setTimeout(() => {
-                    mostrarToast(`Ping concluído! Verifique o console.`, 'success');
-                    console.log(`Resultado do ping para ${ip}:`);
-                    console.log('64 bytes: tempo=15ms TTL=54');
-                    console.log('64 bytes: tempo=14ms TTL=54');
-                    console.log('Pacotes: enviados = 2, recebidos = 2, perdidos = 0');
-                }, 2000);
-            }
-        }
-
-        function traceroute() {
-            const ip = prompt('Digite o IP ou domínio para traceroute:');
-            if (ip) {
-                mostrarToast(`Executando traceroute...`, 'warning');
-                setTimeout(() => {
-                    mostrarToast(`Traceroute concluído!`, 'success');
-                    console.log(`Traceroute para ${ip}:`);
-                    console.log('1  192.168.1.1  2ms');
-                    console.log('2  10.0.0.1    5ms');
-                    console.log('3  8.8.8.8     20ms');
-                }, 2000);
-            }
-        }
-
-        // ===== TOAST =====
-        function mostrarToast(mensagem, tipo = 'success') {
-            const toast = document.createElement('div');
-            toast.className = `toast ${tipo}`;
-            toast.innerHTML = `
-                <i>${tipo === 'success' ? '✅' : tipo === 'error' ? '❌' : '⚠️'}</i>
-                <span>${mensagem}</span>
-            `;
-            
-            document.body.appendChild(toast);
-            
-            setTimeout(() => {
-                toast.remove();
-            }, 3000);
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

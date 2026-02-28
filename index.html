@@ -92,6 +92,15 @@
                         <span class="badge sugestao-item" onclick="sugestaoBusca('nome')">👤 Nome</span>
                         <span class="badge sugestao-item" onclick="sugestaoBusca('telefone')">📱 Telefone</span>
                     </div>
+
+                    <!-- HISTÓRICO DE BUSCAS -->
+                    <div style="margin-top: 20px;">
+                        <div class="d-flex justify-between align-center">
+                            <h3 style="color: var(--primary);">📜 Histórico de Buscas</h3>
+                            <button onclick="limparHistorico()" class="btn-ferramenta" style="width: auto; padding: 5px 15px;">Limpar</button>
+                        </div>
+                        <div id="historicoBuscas" style="margin-top: 15px;"></div>
+                    </div>
                 </div>
 
                 <!-- TABS HUB -->
@@ -146,6 +155,18 @@
                             <button class="btn-ferramenta" onclick="abrirChamadoRapido()">
                                 <i>⚡</i> Chamado Rápido
                             </button>
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('relatorios_os')">
+                                <i>📊</i> Relatórios
+                            </button>
+                        </div>
+                        
+                        <!-- BUSCA DE PROTOCOLO -->
+                        <div class="hubsoft-panel">
+                            <h3 style="margin-bottom: 10px;">Buscar Protocolo</h3>
+                            <div class="d-flex gap-2">
+                                <input type="text" id="protocoloBusca" placeholder="Nº do protocolo..." style="flex:1; padding:10px; border-radius:6px; border:1px solid var(--border-color); background:var(--bg-tertiary); color:var(--text-primary);">
+                                <button onclick="buscarProtocolo()" class="btn-ferramenta" style="width: auto;">Buscar</button>
+                            </div>
                         </div>
                     </div>
 
@@ -163,6 +184,12 @@
                             </button>
                             <button class="btn-ferramenta" onclick="abrirHubSoft('clientes_bloqueados')">
                                 <i>🔒</i> Bloqueados
+                            </button>
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('aniversariantes')">
+                                <i>🎂</i> Aniversariantes
+                            </button>
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('contratos')">
+                                <i>📄</i> Contratos
                             </button>
                         </div>
                     </div>
@@ -182,6 +209,12 @@
                             <button class="btn-ferramenta" onclick="abrirHubSoft('mapa_rede')">
                                 <i>🗺️</i> Mapa da Rede
                             </button>
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('monitoramento_rede')">
+                                <i>📊</i> Monitoramento
+                            </button>
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('log_equipamentos')">
+                                <i>📝</i> Logs
+                            </button>
                         </div>
                     </div>
 
@@ -197,7 +230,31 @@
                             <button class="btn-ferramenta" onclick="abrirHubSoft('recebimentos')">
                                 <i>💵</i> Recebimentos
                             </button>
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('contas_receber')">
+                                <i>📈</i> Contas a Receber
+                            </button>
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('extratos')">
+                                <i>📊</i> Extratos
+                            </button>
+                            <button class="btn-ferramenta" onclick="abrirHubSoft('notas_fiscais')">
+                                <i>🧾</i> Notas Fiscais
+                            </button>
                         </div>
+                    </div>
+                </div>
+
+                <!-- VISUALIZAÇÃO INTEGRADA -->
+                <div class="hubsoft-container">
+                    <h2 style="color: var(--primary); margin-bottom: 15px;">📺 Visualização Integrada</h2>
+                    <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
+                        <button onclick="carregarIframe('dashboard')" class="btn-ferramenta" style="width: auto;">📊 Dashboard</button>
+                        <button onclick="carregarIframe('chamados')" class="btn-ferramenta" style="width: auto;">📋 Chamados</button>
+                        <button onclick="carregarIframe('clientes')" class="btn-ferramenta" style="width: auto;">👥 Clientes</button>
+                        <button onclick="carregarIframe('mapa')" class="btn-ferramenta" style="width: auto;">🗺️ Mapa</button>
+                    </div>
+                    
+                    <div id="iframeContainer" style="background: var(--bg-tertiary); border-radius: 8px; padding: 20px; text-align: center; min-height: 400px;">
+                        <p style="color: var(--text-secondary);">Clique em um botão acima para visualizar o HubSoft</p>
                     </div>
                 </div>
             </div>
@@ -267,6 +324,19 @@
                     <div class="card">
                         <div class="card-header">
                             <i>🔶</i>
+                            <h2>ARCHER C20</h2>
+                        </div>
+                        <div class="card senha-btn" onclick="toggleSenha('archer2')">
+                            <span>Ver Credenciais</span>
+                        </div>
+                        <div class="credencial" id="archer2">
+                            <strong>🔑 Senha:</strong> #TcFcnM@2019* / admin / 2amt0j1t8
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <i>🔷</i>
                             <h2>V-SOL</h2>
                         </div>
                         <div class="card senha-btn" onclick="toggleSenha('sol')">
@@ -275,6 +345,47 @@
                         <div class="credencial" id="sol">
                             <strong>👤 Usuário:</strong> admin<br>
                             <strong>🔑 Senha:</strong> 2amt0j1t8 / stdONU101
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <i>🔶</i>
+                            <h2>ARCHER C5</h2>
+                        </div>
+                        <div class="card senha-btn" onclick="toggleSenha('archer')">
+                            <span>Ver Credenciais</span>
+                        </div>
+                        <div class="credencial" id="archer">
+                            <strong>🔑 Senha:</strong> 2amt0j1t8
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <i>🔷</i>
+                            <h2>STAVIX</h2>
+                        </div>
+                        <div class="card senha-btn" onclick="toggleSenha('stavix')">
+                            <span>Ver Credenciais</span>
+                        </div>
+                        <div class="credencial" id="stavix">
+                            <strong>👤 Usuário:</strong> admin / root<br>
+                            <strong>🔑 Senha:</strong> 2amt0j1t8 / admin / Changeme_123 / unee123
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <i>🔶</i>
+                            <h2>MULTILASER</h2>
+                        </div>
+                        <div class="card senha-btn" onclick="toggleSenha('multilaser')">
+                            <span>Ver Credenciais</span>
+                        </div>
+                        <div class="credencial" id="multilaser">
+                            <strong>👤 Usuário:</strong> adminisp<br>
+                            <strong>🔑 Senha:</strong> adminisp
                         </div>
                     </div>
                 </div>
@@ -289,50 +400,92 @@
                             <i>🟢</i>
                             <h2>GPON</h2>
                         </div>
-                        <button class="btn-ferramenta" onclick="abrir('https://grafana.tcftelecom.com.br')">
-                            <i>📊</i> Acessar Grafana
+                        <button class="btn-ferramenta" onclick="abrir('https://grafana.tcftelecom.com.br/d/b_-hdzAnkdawdwa/6-gpon-causa-de-desconexao-das-onus?orgId=1&refresh=1m')">
+                            <i>📊</i> Causa de Desconexão
+                        </button>
+                        <button class="btn-ferramenta" onclick="abrir('https://grafana.tcftelecom.com.br/d/ETSzqH9iWdawd/6-gpon-contagem-de-onus-por-pon?orgId=1&refresh=5m')">
+                            <i>📈</i> Contagem de ONUs por PON
+                        </button>
+                        <button class="btn-ferramenta" onclick="abrir('https://grafana.tcftelecom.com.br/d/pR2b9Zsiaqa/6-gpon-potencia-das-onus?orgId=1&refresh=15m')">
+                            <i>⚡</i> Potência das ONUs
+                        </button>
+                        <button class="btn-ferramenta" onclick="abrir('https://grafana.tcftelecom.com.br/d/IMw6L74Dz/6-gpon-sinal-alto?orgId=1&refresh=15m')">
+                            <i>📶</i> Sinal Alto
+                        </button>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <i>🔋</i>
+                            <h2>VMS & Energia</h2>
+                        </div>
+                        <button class="btn-ferramenta" onclick="abrir('https://grafana.tcftelecom.com.br/d/oKasylFHz/8-energia-ping-e-energia?orgId=1&refresh=1m')">
+                            <i>⚡</i> PING & ENERGIA
+                        </button>
+                        <button class="btn-ferramenta" onclick="abrir('https://grafana.tcftelecom.com.br/d/l88Zhfjnzefwefw/11-servidores-vmware-esxi?orgId=1')">
+                            <i>🖥️</i> VMS Monitor
                         </button>
                     </div>
                 </div>
+                <div class="text-center mt-4">
+                    <button class="btn-ferramenta btn-primary" onclick="abrir('https://grafana.tcftelecom.com.br')">
+                        <i>📊</i> Acessar Grafana Completo
+                    </button>
+                </div>
             </div>
 
-            <!-- PAINEL MENSAGENS -->
+            <!-- PAINEL MENSAGENS (ATUALIZADO) -->
             <div class="painel" id="mensagens">
                 <h1 class="titulo-painel"><i>💬</i> Mensagens Automáticas</h1>
                 
                 <div class="grid-container">
+                    <!-- Diagnóstico Desconectado -->
                     <div class="card">
                         <div class="card-header">
-                            <i>🗓️</i>
-                            <h2>Agendamento</h2>
+                            <i>📴</i>
+                            <h2>Desconectado</h2>
                         </div>
-                        <button class="btn-ferramenta" onclick="copiarMensagem('diaA')">
-                            <i>🌅</i> Bom dia
-                        </button>
-                        <button class="btn-ferramenta" onclick="copiarMensagem('tardeA')">
-                            <i>☀️</i> Boa tarde
-                        </button>   
-                        <button class="btn-ferramenta" onclick="copiarMensagem('noiteA')">
-                            <i>🌙</i> Boa noite
+                        <button class="btn-ferramenta" onclick="copiarMensagem('desconectado')">
+                            <i>📹</i> Pedir Vídeo do Roteador
                         </button>
                     </div>
+
+                    <!-- Diagnóstico Lentidão -->
                     <div class="card">
                         <div class="card-header">
-                            <i>🛠️</i>
-                            <h2>Suporte Técnico</h2>
+                            <i>🐢</i>
+                            <h2>Lentidão</h2>
                         </div>
-                        <button class="btn-ferramenta" onclick="copiarMensagem('dia')">
-                            <i>🌅</i> Bom dia
+                        <button class="btn-ferramenta" onclick="copiarMensagem('lentidao')">
+                            <i>📋</i> Roteiro Completo de Diagnóstico
                         </button>
-                        <button class="btn-ferramenta" onclick="copiarMensagem('tarde')">
-                            <i>☀️</i> Boa tarde
-                        </button> 
-                        <button class="btn-ferramenta" onclick="copiarMensagem('noite')">
-                            <i>🌙</i> Boa noite
-                        </button>
-                        <button class="btn-ferramenta" onclick="copiarMensagem('rompimento')">
-                            <i>⚠️</i> Rompimento
-                        </button>
+                    </div>
+
+                    <!-- Perguntas Individuais -->
+                    <div class="card">
+                        <div class="card-header">
+                            <i>❓</i>
+                            <h2>Perguntas Específicas</h2>
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 5px;">
+                            <button class="btn-ferramenta" onclick="copiarMensagem('pergunta_1')">
+                                <i>1️⃣</i> Sobre aparelhos
+                            </button>
+                            <button class="btn-ferramenta" onclick="copiarMensagem('pergunta_2')">
+                                <i>2️⃣</i> Wi-Fi vs Cabo
+                            </button>
+                            <button class="btn-ferramenta" onclick="copiarMensagem('pergunta_3')">
+                                <i>3️⃣</i> Horários
+                            </button>
+                            <button class="btn-ferramenta" onclick="copiarMensagem('pergunta_4')">
+                                <i>4️⃣</i> Sinal/Reinício
+                            </button>
+                            <button class="btn-ferramenta" onclick="copiarMensagem('pergunta_5')">
+                                <i>5️⃣</i> Sites/Vídeos
+                            </button>
+                            <button class="btn-ferramenta" onclick="copiarMensagem('pergunta_6')">
+                                <i>6️⃣</i> Cabos
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -344,12 +497,32 @@
                     <div class="card">
                         <div class="card-header">
                             <i>🎓</i>
-                            <h2>YouTube</h2>
+                            <h2>MikroTik</h2>
                         </div>
-                        <button class="btn-ferramenta" onclick="abrir('https://youtube.com')">
-                            <i>📘</i> Cursos
+                        <button class="btn-ferramenta" onclick="abrir('https://www.youtube.com/watch?v=NrZMQ0YkWKI&list=PL1HkL1MnPEeVMEVRqUqQIYTBEibXJDiYK')">
+                            <i>📘</i> Curso de Redes com MikroTik
+                        </button>
+                        <button class="btn-ferramenta" onclick="abrir('https://www.youtube.com/watch?v=KkcTAKrmmT4&list=PLruxV6Ot1BiQ_PbRYh4P5E7-RujzWeSJh')">
+                            <i>📗</i> Curso de Redes com MikroTik (2)
                         </button>
                     </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <i>🎓</i>
+                            <h2>Fundamentos</h2>
+                        </div>
+                        <button class="btn-ferramenta" onclick="abrir('https://www.youtube.com/watch?v=QkMbqL8QD9w&list=PLHz_AreHm4dkd4lr9G0Up-W-YaHYdTDuP')">
+                            <i>📕</i> Entenda a Rede do Cliente
+                        </button>
+                        <button class="btn-ferramenta" onclick="abrir('https://www.youtube.com/watch?v=5pFJPVg5nbE&list=PL6BTdBqzl1oY9EQ4151rGNEbATMNgX8vK')">
+                            <i>📙</i> Redes com Packet Tracer
+                        </button>
+                    </div>
+                </div>
+                <div class="text-center mt-4">
+                    <button class="btn-ferramenta btn-primary" onclick="abrir('https://quiz-redes-tcf.pages.dev')">
+                        <i>🧪</i> Testar conhecimentos (Quiz)
+                    </button>
                 </div>
             </div>
 
@@ -358,8 +531,21 @@
                 <h1 class="titulo-painel"><i>📺</i> TV Corporativa</h1>  
                 <div class="grid-container">
                     <div class="card">
+                        <div class="card-header">
+                            <i>💻</i>
+                            <h2>Acesso Web</h2>
+                        </div>
                         <button class="btn-ferramenta" onclick="abrir('http://tv.tcftelecom.com.br')">
                             <i>🌐</i> Acessar TV Web
+                        </button>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <i>📱</i>
+                            <h2>Aplicativo Mobile</h2>
+                        </div>
+                        <button class="btn-ferramenta" onclick="abrir('https://play.google.com/store/apps/details?id=com.tcftv.tv&pcampaignid=web_share')">
+                            <i>📲</i> Baixar na Play Store
                         </button>
                     </div>
                 </div>
@@ -367,11 +553,30 @@
 
             <!-- PAINEL FERRAMENTAS -->
             <div class="painel" id="ferramentas">
-                <h1 class="titulo-painel"><i>🛠️</i> Ferramentas</h1>
+                <h1 class="titulo-painel"><i>🛠️</i> Ferramentas Úteis</h1>
                 <div class="grid-container">
                     <div class="card">
-                        <button class="btn-ferramenta" onclick="calculadoraIP()">
-                            <i>🧮</i> Calculadora IP
+                        <div class="card-header">
+                            <i>🔧</i>
+                            <h2>Diagnóstico</h2>
+                        </div>
+                        <button class="btn-ferramenta" onclick="pingTest()">
+                            <i>📶</i> Teste de Ping
+                        </button>
+                        <button class="btn-ferramenta" onclick="traceroute()">
+                            <i>🔄</i> Traceroute
+                        </button>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <i>📋</i>
+                            <h2>Calculadoras</h2>
+                        </div>
+                        <button class="btn-ferramenta" onclick="abrir('https://www.calculator.net/ip-subnet-calculator.html')">
+                            <i>🧮</i> Calculadora de Sub-rede
+                        </button>
+                        <button class="btn-ferramenta" onclick="abrir('https://www.rapidtables.com/convert/number/binary-to-decimal.html')">
+                            <i>🔢</i> Conversor Binário/Decimal
                         </button>
                     </div>
                 </div>
